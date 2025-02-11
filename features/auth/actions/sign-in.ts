@@ -2,12 +2,12 @@
 
 import { SendVerifyEmail } from '@/features/email/utils'
 import { db } from '@/lib/db'
-import { lucia } from '@/lib/lucia'
 import { ResponseHandler } from '@/lib/utils'
 import { generateIdFromEntropySize } from 'lucia'
 import { cookies } from 'next/headers'
 import { createDate, TimeSpan } from 'oslo'
 import { Argon2id } from 'oslo/password'
+import { lucia } from '../lucia'
 import { AuthDataType } from '../types'
 
 const signIn = async (formData: AuthDataType) => {
@@ -68,7 +68,7 @@ const signIn = async (formData: AuthDataType) => {
 
           const sessionCookie = lucia.createSessionCookie(session.id)
 
-          cookies().set(
+          ;(await cookies()).set(
                sessionCookie.name,
                sessionCookie.value,
                sessionCookie.attributes

@@ -12,7 +12,7 @@ export const useWindowScrollPositions = () => {
           updatePosition()
 
           return () => window.removeEventListener('scroll', updatePosition)
-     }, [])
+     }, []) // Empty array ensures that effect is only run on mount
 
      return scrollPosition
 }

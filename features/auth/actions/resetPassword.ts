@@ -12,7 +12,6 @@ const resetPassword = async (formData: AuthDataType) => {
      if (!userId || !password || password !== vPassword)
           return ResponseHandler('invalid data', true)
 
-     console.log(userId, password)
      try {
           const user = await db.user.findUnique({
                where: { id: userId },

@@ -6,7 +6,7 @@ import { vi } from 'vitest'
 import AuthForm from '.'
 import { AuthSteps } from '../../types'
 
-vi.mock('@/features/i18n/routing', async () => {
+vi.mock('@/i18n/routing', async () => {
      const mod = await vi.importActual('@/features/i18n/routing')
      return {
           ...mod,

@@ -1,4 +1,4 @@
-import { generateMeta } from '@/lib/generateMeta'
+import generateMeta from '@/lib/generateMeta'
 import { useTranslations } from 'next-intl'
 
 export const generateMetadata = async () => await generateMeta('dashboard')

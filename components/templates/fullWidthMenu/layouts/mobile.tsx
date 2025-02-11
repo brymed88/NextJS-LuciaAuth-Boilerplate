@@ -1,11 +1,25 @@
+'use client'
 import LocaleChanger from '@/components/atoms/localeChanger'
+import LogoutBtn from '@/components/atoms/logoutBtn'
 import { cn } from '@/lib/utils'
 import { Menu, XIcon } from 'lucide-react'
-import { PropsWithChildren, useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { useState } from 'react'
+import { NavLinkType } from '../types'
 
-const MobileMenuLayout = ({ children }: PropsWithChildren) => {
+import Link from 'next/link'
+type MobileMenuType = {
+     hasSession: boolean
+     menu: NavLinkType[]
+     authEnabled: boolean
+}
+const MobileMenuLayout = ({
+     menu,
+     hasSession,
+     authEnabled,
+}: MobileMenuType) => {
      const [menuToggled, setMenuToggled] = useState(false)
-
+     const t = useTranslations('menu.main')
      return (
           <>
                <div
@@ -15,7 +29,42 @@ const MobileMenuLayout = ({ children }: PropsWithChildren) => {
                     )}
                >
                     <div onClick={() => setMenuToggled(false)} className="py-8">
-                         {children}
+                         <nav className="flex flex-col items-center gap-4">
+                              {menu.map((menuItem) => {
+                                   if (menuItem.url)
+                                        return (
+                                             <Link
+                                                  href={menuItem.url}
+                                                  key={menuItem.label}
+                                                  className="w-full rounded-md bg-indigo-500 p-2 text-center"
+                                             >
+                                                  {menuItem.label}
+                                             </Link>
+                                        )
+                                   if (menuItem.label)
+                                        return (
+                                             <p
+                                                  className="w-full rounded-md bg-indigo-500 p-2 text-center"
+                                                  key={menuItem.label}
+                                             >
+                                                  {menuItem.label}
+                                                  <span>%</span>
+                                             </p>
+                                        )
+                              })}
+
+                              {authEnabled && (
+                                   <Link
+                                        href={
+                                             hasSession ? '/dashboard' : '/auth'
+                                        }
+                                        className="w-full rounded-md bg-indigo-500 p-2 text-center"
+                                   >
+                                        {t('accountBtn')}
+                                   </Link>
+                              )}
+                              {hasSession && <LogoutBtn />}
+                         </nav>
                     </div>
                     <LocaleChanger className="max-w-20 self-end" />
                </div>

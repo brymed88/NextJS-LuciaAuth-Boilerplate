@@ -7,6 +7,6 @@ export default tseslint.config(
      eslint.configs.recommended,
      ...tseslint.configs.recommended,
      {
-          ignores:['**/.next/*', '**/.vscode/*','**/coverage/*','','']
+          ignores: ['**/.next/*', '**/.vscode/*', '**/coverage/*', '', ''],
      }
 )

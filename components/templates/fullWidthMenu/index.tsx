@@ -1,6 +1,4 @@
 'use client'
-import LogoutBtn from '@/components/atoms/logoutBtn'
-import { Link } from '@/features/i18n/routing'
 import useWindowDimensions from '@/hooks/useWindowDimensions'
 import { useWindowScrollPositions } from '@/hooks/useWindowScrollPositions'
 import { cn } from '@/lib/utils'
@@ -8,16 +6,23 @@ import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import DesktopMenuLayout from './layouts/desktop'
 import MobileMenuLayout from './layouts/mobile'
+import { NavLinkType } from './types'
 
 type MenuProps = {
      hasSession: boolean
+     authEnabled: boolean
 }
 
-const FullWidthMenu = ({ hasSession }: MenuProps) => {
+const FullWidthMenu = ({ hasSession, authEnabled }: MenuProps) => {
      const { scrollY } = useWindowScrollPositions()
      const { width } = useWindowDimensions()
      const t = useTranslations('menu.main')
      const isDesktop = width ? width > 768 || false : undefined
+
+     const menuNav: NavLinkType[] = [
+          { url: '/', label: t('home') },
+          { url: '/about', label: t('about') },
+     ]
 
      return (
           <section
@@ -45,50 +50,18 @@ const FullWidthMenu = ({ hasSession }: MenuProps) => {
                     )}
 
                     {!isDesktop && isDesktop !== undefined && (
-                         <MobileMenuLayout>
-                              <nav className="flex flex-col items-center gap-4">
-                                   <Link
-                                        href="/"
-                                        className="w-full rounded-md bg-indigo-500 p-2 text-center"
-                                   >
-                                        {t('home')}
-                                   </Link>
-                                   <Link
-                                        href="/about"
-                                        className="w-full rounded-md bg-indigo-500 p-2 text-center"
-                                   >
-                                        {t('about')}
-                                   </Link>
-                                   <Link
-                                        href={
-                                             hasSession ? '/dashboard' : '/auth'
-                                        }
-                                        className="w-full rounded-md bg-indigo-500 p-2 text-center"
-                                   >
-                                        {t('accountBtn')}
-                                   </Link>
-                                   {hasSession && <LogoutBtn />}
-                              </nav>
-                         </MobileMenuLayout>
+                         <MobileMenuLayout
+                              menu={menuNav}
+                              hasSession={hasSession}
+                              authEnabled={authEnabled}
+                         />
                     )}
                     {isDesktop && (
-                         <DesktopMenuLayout>
-                              <nav className="flex items-center gap-6">
-                                   <Link href="/">{t('home')}</Link>
-                                   <Link href="/about">{t('about')}</Link>
-
-                                   <Link
-                                        href={
-                                             hasSession ? '/dashboard' : '/auth'
-                                        }
-                                   >
-                                        {hasSession ?
-                                             t('loggedIn')
-                                        :    t('accountBtn')}
-                                   </Link>
-                                   {hasSession && <LogoutBtn />}
-                              </nav>
-                         </DesktopMenuLayout>
+                         <DesktopMenuLayout
+                              menu={menuNav}
+                              hasSession={hasSession}
+                              authEnabled={authEnabled}
+                         />
                     )}
                </header>
           </section>

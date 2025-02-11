@@ -4,23 +4,23 @@ NextJS Boiler is a minimalist boilerplate that includes the below features. This
 
 ## FEATURES
 
--    [Next.js](https://nextjs.org/docs/app) with APP router support
--    Full [Typescript](https://www.typescriptlang.org/) implementation with type checking
--    [Tailwind CSS](https://tailwindcss.com/)
--    Authentication using [Lucia Auth](https://lucia-auth.com/): Sign up, Sign in, Sign out, Forgot password and Email verification
--    [Vitest](https://vitest.dev/) for component testing
--    Multi-language (i18n) with [next-intl](https://next-intl-docs.vercel.app/): EN, PT supplied
--    Form handling with [React Hook Form](https://react-hook-form.com/)
--    Form validation using [Zod](https://zod.dev/)
--    [Husky](https://typicode.github.io/husky/) for Git Hooks
--    Code Formatting with [Prettier](https://prettier.io/)
--    [Lint-staged](https://github.com/lint-staged/lint-staged) for running linters on Git staged files
--    Responsive minimalist starter theme
--    Features folder with encapsulated code
--    Send emails using [Resend](https://resend.com/docs/introduction)
--    Email templates using [react-email](https://react.email/docs/introduction)
--    Absolute Imports using @ prefix
--    SEO metadata
+- [Next.js](https://nextjs.org/docs/app) with APP router support
+- Full [Typescript](https://www.typescriptlang.org/) implementation with type checking
+- [Tailwind CSS](https://tailwindcss.com/)
+- Authentication using [Lucia Auth](https://lucia-auth.com/): Sign up, Sign in, Sign out, Forgot password and Email verification
+- [Vitest](https://vitest.dev/) for component testing
+- Multi-language (i18n) with [next-intl](https://next-intl-docs.vercel.app/): EN, PT supplied
+- Form handling with [React Hook Form](https://react-hook-form.com/)
+- Form validation using [Zod](https://zod.dev/)
+- [Husky](https://typicode.github.io/husky/) for Git Hooks
+- Code Formatting with [Prettier](https://prettier.io/)
+- [Lint-staged](https://github.com/lint-staged/lint-staged) for running linters on Git staged files
+- Responsive minimalist starter theme
+- Features folder with encapsulated code
+- Send emails using [Resend](https://resend.com/docs/introduction)
+- Email templates using [react-email](https://react.email/docs/introduction)
+- Absolute Imports using @ prefix
+- SEO metadata
 
 ## Getting started
 
@@ -58,9 +58,11 @@ NEXT_PUBLIC_SITE_URL="http://localhost:3000"
 NEXT_PUBLIC_SITE_NAME="TestSite"
 NEXT_PUBLIC_SUPPORT_EMAIL="support@test.com"
 ```
+
 ### Migrate the database
 
 Development
+
 ```
 npm run dbMigrateDev
 ```
@@ -68,6 +70,7 @@ npm run dbMigrateDev
 OR
 
 Production
+
 ```
 npm run dbMigratePrd
 ```

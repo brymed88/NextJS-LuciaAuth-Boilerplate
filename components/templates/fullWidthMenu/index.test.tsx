@@ -22,7 +22,7 @@ vi.mock('@/features/i18n/routing', async () => {
 const renderComponent = (session: boolean) => {
      return render(
           <IntlMockProvider locale="en">
-               <FullWidthMenu hasSession={session} />
+               <FullWidthMenu hasSession={session} authEnabled={true} />
           </IntlMockProvider>
      )
 }
