@@ -1,8 +1,8 @@
 'use server'
 
 import { redirect } from '@/features/i18n/routing'
-import { lucia } from '@/lib/lucia'
 import { cookies } from 'next/headers'
+import { lucia } from '../lucia'
 import { getAuth } from '../queries/get-auth'
 
 export const signOut = async () => {
@@ -17,7 +17,7 @@ export const signOut = async () => {
 
      const sessionCookie = lucia.createBlankSessionCookie()
 
-     cookies().set(
+     ;(await cookies()).set(
           sessionCookie.name,
           sessionCookie.value,
           sessionCookie.attributes

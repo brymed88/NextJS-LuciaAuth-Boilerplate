@@ -11,7 +11,7 @@ vi.mock('react', async () => {
      }
 })
 
-vi.mock('@/features/i18n/routing', async () => {
+vi.mock('@/i18n/routing', async () => {
      const mod = await vi.importActual('@/features/i18n/routing')
      return {
           ...mod,

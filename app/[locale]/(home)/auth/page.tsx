@@ -1,28 +1,34 @@
 import AuthForm from '@/features/auth/components/authForm'
 import { AuthSteps, authStepTypes } from '@/features/auth/types'
-import { generateMeta } from '@/lib/generateMeta'
+import generateMeta from '@/lib/generateMeta'
+import { redirect } from 'next/navigation'
 
 export const generateMetadata = async () => await generateMeta('auth')
 
 type AuthPageProps = {
-     searchParams: { [key: string]: string | undefined }
+     searchParams: Promise<{ [key: string]: string | undefined }>
 }
 
-const AuthPage = ({ searchParams }: AuthPageProps) => {
+const AuthPage = async ({ searchParams }: AuthPageProps) => {
+     const authEnabled = process.env.AUTH_ENABLED === 'true'
+
+     if (!authEnabled) redirect('/404')
+
+     const params = await searchParams
      const step = (
-          searchParams.code ? 'verify'
-          : !searchParams.step ? 'login'
-          : authStepTypes.includes(searchParams.step) ? searchParams.step
+          params.code ? 'verify'
+          : !params.step ? 'login'
+          : authStepTypes.includes(params.step) ? params.step
           : 'login') as AuthSteps
 
-     const verifyCode = searchParams.code
+     const verifyCode = params.code
 
      return (
           <section className="flex size-full justify-center md:pt-20">
                <AuthForm
                     step={step}
                     verifyCode={verifyCode}
-                    type={searchParams.type}
+                    type={params.type}
                />
           </section>
      )

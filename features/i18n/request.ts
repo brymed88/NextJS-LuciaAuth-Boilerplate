@@ -6,7 +6,7 @@ import { cookies } from 'next/headers'
 import { locales } from './routing'
 
 export default getRequestConfig(async () => {
-     const locale = cookies().get('NEXT_LOCALE')?.value || 'en'
+     const locale = (await cookies()).get('NEXT_LOCALE')?.value || 'en'
 
      if (!locales.includes(locale)) notFound()
 

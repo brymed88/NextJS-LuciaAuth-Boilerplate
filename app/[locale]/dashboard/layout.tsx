@@ -4,6 +4,9 @@ import { redirect } from '@/features/i18n/routing'
 import { PropsWithChildren } from 'react'
 
 export default async function DashboardLayout({ children }: PropsWithChildren) {
+     const authEnabled = process.env.AUTH_ENABLED === 'true'
+     if (!authEnabled) redirect('/404')
+
      const { user } = await getAuth()
      if (!user) redirect('/auth')
 

@@ -5,10 +5,6 @@ export type AuthDataType = {
      userId?: string
 }
 
-export type AccountVerificationType = {
-     code: string
-}
-
 export type AuthSteps =
      | 'login'
      | 'signup'

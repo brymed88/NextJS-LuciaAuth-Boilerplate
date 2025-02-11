@@ -1,4 +1,4 @@
-import { generateMeta } from '@/lib/generateMeta'
+import generateMeta from '@/lib/generateMeta'
 
 export const generateMetadata = async () => await generateMeta('terms')
 

@@ -1,0 +1,4 @@
+{
+     "project": ["**/*.ts", "**/*.tsx", "!features/i18n/**"],
+     "ignore": ["*.json", "postcss.config.mjs"]
+}
